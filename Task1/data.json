@@ -1,0 +1,11 @@
+{
+    "items":[
+       {
+          "dataType":"Fishing",
+          "NumberProperty":10,
+          "FloatProperty":20.13,
+          "BooleanProperty":true,
+          "EmptyProperty":null
+       }
+    ]
+ }
