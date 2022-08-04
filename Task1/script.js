@@ -39,20 +39,7 @@ async function fetchData(url){
           myList.appendChild(label);
           myList.appendChild(breakP);
         } 
-    //   const listItem = document.createElement('input');
-    //   const label = document.createElement('label');
-
-    //   listItem.setAttribute("type", "checkbox");
-    //   listItem.setAttribute("id", `${product.instrument}`);
-
-    //   label.setAttribute('for',`${product.instrument}`)
-    //   label.innerHTML = `${product.instrument}`;
-
-    //   console.log(`${product.instrument}`);
-      
-      
-    //   myList.appendChild(listItem);
-    //   myList.appendChild(label);
+    
     }
   }).catch(console.error);
     
