@@ -1,0 +1,27 @@
+{
+    "items":[
+      {
+         "dataType":"Fishing",
+         "underItems":[
+            {
+               "underType":"Okun",
+               "properts":[
+                 {
+                  "instrument":"Spinning",
+                  "length":"123 метри"
+               }
+              ]
+            },
+            {
+               "underType":"Liashch",
+               "properts":[
+                 {
+                   "instrument":"Spinning",
+                  "length":"123 метри"
+               }
+              ]
+            }
+          ]
+      }
+   ]
+ }
