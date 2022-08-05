@@ -2,7 +2,6 @@
 
 
 function docOnReady(event){
-    fetchData('./data.json');
     checkForOccurence();
     //const CheckList = document.getElementById("Fishing");
     const CheckList = document.getElementsByClassName("Fishing");
@@ -10,11 +9,11 @@ function docOnReady(event){
     for (const item of CheckList) {
       item.addEventListener("pointerover", showData.bind(item));
     }
-    buttonClose();
+    
 }
 
 
-async function fetchData(url){
+async function fetchData(url, nameOfCategory){
     const myList = document.querySelector('ul');
     fetch(url)
     .then((response) => {
@@ -24,7 +23,7 @@ async function fetchData(url){
         return response.json();
       })
     .then((data) => {
-    for (const item of data.items) {
+    for (const item of data[nameOfCategory]) {
         for(const value in item)
         {
           if(value === 'dataType') continue;
@@ -38,15 +37,17 @@ async function fetchData(url){
           label.setAttribute('for',`${value} `)
           label.innerHTML = `${value}: ${item[value]}`;
           
-          
           myList.appendChild(listItem);
           myList.appendChild(label);
           myList.appendChild(breakP);
         } 
-    
+        
     }
   }).catch(console.error);
-  return 
+}
+
+function clearData(list){
+  list.innerHTML = '';
 }
 
 function buttonClose(){
@@ -54,18 +55,27 @@ function buttonClose(){
     btn.addEventListener("click", hideData);
 }
 
-function showData(){
+async function showData(){
     const box = document.getElementById('CheckList');
     box.style.visibility = 'visible';
-    console.log(this.id);
-    checkForOccurence(this.id);
+    console.log(this.id );
+    if(checkForOccurence(this.id)){
+      console.log('Fetching data..');
+      await fetchData('./data.json',this.id);
+    }
+    
+    const myList = document.querySelector('ul');
+    clearData(myList);
+    await buttonClose();
 }
 
 function hideData(){
     const box = document.getElementById('CheckList');
-    const myList = document.querySelector('ul');
     
+
+
     box.style.visibility = 'hidden';
+
 }
 
 async function getTypes(){
