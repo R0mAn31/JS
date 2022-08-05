@@ -1,16 +1,16 @@
 {
-   "items":[
-      {
-         "dataType":"Fishing",
-         "instrument":"Вудочка",
-         "length":"5 метрів"
-      }
-   ],
-   "mffafafa":[
-      {
-         "dataType":"Fishing",
-         "instrument":"dsafка",
-         "length":"5213 метрів"
-      }
-   ]
+  "items":[
+     {
+        "dataType":"Fishing",
+        "instrument":"Вудочка",
+        "length":"5 метрів"
+     }
+  ],
+  "mffafafa":[
+     {
+        "dataType":"Fishing",
+        "instrument":"dsafка",
+        "length":"5213 метрів"
+     }
+  ]
 }

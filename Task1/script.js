@@ -6,11 +6,10 @@ function docOnReady(event){
     checkForOccurence();
     //const CheckList = document.getElementById("Fishing");
     const CheckList = document.getElementsByClassName("Fishing");
-    const htmlDoc = document.getElementsByTagName("html");
+    const htmlDoc = document.querySelector("Fishing");
     for (const item of CheckList) {
-      item.addEventListener("pointerover", showData);
+      item.addEventListener("pointerover", showData.bind(item));
     }
-    pointerDetecter(htmlDoc);
     buttonClose();
 }
 
@@ -58,6 +57,8 @@ function buttonClose(){
 function showData(){
     const box = document.getElementById('CheckList');
     box.style.visibility = 'visible';
+    console.log(this.id);
+    checkForOccurence(this.id);
 }
 
 function hideData(){
@@ -76,18 +77,10 @@ async function getTypes(){
   return typesArray;
 }
 
-async function checkForOccurence(){
+async function checkForOccurence(id){
   let myArray = await getTypes();
   console.log(myArray);
+  console.log(myArray.has(id))
 }
-
-async function pointerDetecter(obj){
-  function log(){
-    console.log(obj.id);
-  }
-
-window.addEventListener('pointerover', log);
-}
-
 
 window.addEventListener("DOMContentLoaded",docOnReady);
