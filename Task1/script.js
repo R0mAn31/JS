@@ -1,19 +1,30 @@
 "use strict"
 
 
-function docOnReady(event){
-    checkForOccurence();
-    //const CheckList = document.getElementById("Fishing");
-    const CheckList = document.getElementsByClassName("Fishing");
-    const htmlDoc = document.querySelector("Fishing");
+async function docOnReady(event){
+    getSections();
+    const namesArray = await getSections();
+   
+    for (const name of namesArray) {
+      let CheckList = document.getElementsByClassName(name);
     for (const item of CheckList) {
       item.addEventListener("pointerover", showData.bind(item));
     }
-    
+    }
 }
 
+async function getSections(){
+  let typesArray = [];
+  let fetchRequest = await fetch('./data.json');
+  let dataArray = await fetchRequest.json();
+  for(const item in dataArray)
+  {
+    typesArray.push(item);
+  }
+  return typesArray;
+}
 
-async function fetchData(url, nameOfCategory){
+async function fetchData(url, nameOfCategory, nameOfClass){
     const myList = document.querySelector('ul');
     fetch(url)
     .then((response) => {
@@ -23,8 +34,9 @@ async function fetchData(url, nameOfCategory){
         return response.json();
       })
     .then((data) => {
-    for (const item of data[nameOfCategory]) {
-        for(const value in item)
+    for (const item of data[nameOfClass]) {
+      for (const it of item[nameOfCategory]) {
+        for(const value in it)
         {
           if(value === 'dataType') continue;
           const listItem = document.createElement('input');
@@ -35,12 +47,14 @@ async function fetchData(url, nameOfCategory){
           listItem.setAttribute("id", `${value}`);
     
           label.setAttribute('for',`${value} `)
-          label.innerHTML = `${value}: ${item[value]}`;
+          label.innerHTML = `${value}: ${it[value]}`;
           
           myList.appendChild(listItem);
           myList.appendChild(label);
           myList.appendChild(breakP);
         } 
+      }
+        
         
     }
   }).catch(console.error);
@@ -58,15 +72,15 @@ function buttonClose(){
 async function showData(){
     const box = document.getElementById('CheckList');
     box.style.visibility = 'visible';
-    console.log(this.id );
-    if(checkForOccurence(this.id)){
+    console.log(this.className, this.id);
+    if(checkForOccurence(this.className)){
       console.log('Fetching data..');
-      await fetchData('./data.json',this.id);
+      await fetchData('./data.json',this.id, this.className);
     }
     
     const myList = document.querySelector('ul');
     clearData(myList);
-    await buttonClose();
+    buttonClose();
 }
 
 function hideData(){
@@ -87,10 +101,9 @@ async function getTypes(){
   return typesArray;
 }
 
-async function checkForOccurence(id){
+async function checkForOccurence(cName){
   let myArray = await getTypes();
-  console.log(myArray);
-  console.log(myArray.has(id))
+  console.log(myArray.has(cName),'Class found')
 }
 
 window.addEventListener("DOMContentLoaded",docOnReady);

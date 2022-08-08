@@ -1,16 +1,53 @@
 {
-  "Okun":[
-     {
-        "dataType":"Fishing",
-        "instrument":"Вудочка",
-        "length":"5 метрів"
-     }
-  ],
-  "Liashch":[
-     {
-        "dataType":"Fishing",
-        "instrument":"dsafка",
-        "length":"5213 метрів"
-     }
-  ]
+   "Fishing":[
+      {
+      "Okun":[
+         {
+            "dataType":"Fishing",
+            "instrument":"Вудочка",
+            "length":"5 метрів"
+         }
+      ],
+      "Liashch":[
+         {
+            "dataType":"Fishing",
+            "instrument":"dsafка",
+            "length":"5213 метрів"
+         }
+      ]
+   }
+   ],
+   "Hunting":[
+      {
+      "Baran":[
+         {
+            "instrument":"AR445",
+            "scope":"zoom 45"
+         }
+      ],
+      "Hare":[
+         {
+            "instrument":"Rushnitsa",
+            "scope":"no scope"
+         }
+      ]
+   }
+   ],
+   "Cooking":[
+      {
+      "Tort":[
+         {
+            "decoration":"yellow",
+            "ingridient":"cacao",
+            "instrument":"lopatka"
+         }
+      ],
+      "Cookie":[
+         {
+            "instrument":"lopatka",
+            "ingridient":"cukor"
+         }
+      ]
+   }
+   ]
 }
