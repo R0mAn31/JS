@@ -1,16 +1,17 @@
 "use strict"
-
+//тайпскрипт переписати
+//сервіс для роботи з категоріями -окремий файл
+//побудова ui - окремий файл
+//get weather widget
+//зробити протіші фкунції 
 
 async function docOnReady(event){
     getSections();
     const namesArray = await getSections();
-   
-    for (const name of namesArray) {
-      let CheckList = document.getElementsByClassName(name);
-    for (const item of CheckList) {
-      item.addEventListener("pointerover", showData.bind(item));
-    }
-    }
+    const checkListElements = namesArray.map(name => document.getElementsByClassName(name));
+    const itemElements = checkListElements.reduce((elements,element) => [...elements,...element], []);
+    
+    itemElements.forEach(element =>  element.addEventListener("pointerover", showData.bind(element)));
 }
 
 async function getSections(){
@@ -77,7 +78,6 @@ async function showData(){
       console.log('Fetching data..');
       await fetchData('./data.json',this.id, this.className);
     }
-    
     const myList = document.querySelector('ul');
     clearData(myList);
     buttonClose();
@@ -85,9 +85,6 @@ async function showData(){
 
 function hideData(){
     const box = document.getElementById('CheckList');
-    
-
-
     box.style.visibility = 'hidden';
 
 }
